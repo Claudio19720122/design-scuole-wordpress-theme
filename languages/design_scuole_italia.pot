@@ -4532,7 +4532,7 @@ msgid "Vedi tutto su scuole in chiaro"
 msgstr ""
 
 #: template-parts/home/le-carte.php:11
-msgid "Le carte della scuola"
+msgid "Le carte dalla scuola"
 msgstr ""
 
 #: template-parts/home/le-carte.php:51

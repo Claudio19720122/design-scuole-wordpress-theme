@@ -6,7 +6,6 @@ $luoghi = dsi_get_meta("luoghi");
 $persone = dsi_get_meta("persone");
 $numerazione_circolare = dsi_get_meta("numerazione_circolare");
 
-$image_id= get_post_thumbnail_id($post);
 if(has_post_thumbnail($post))
     $image_url = get_the_post_thumbnail_url($post, "item-thumb");
 else
@@ -19,7 +18,7 @@ $autore = get_user_by("ID", $post->post_author);
         <div class="row variable-gutters">
             <div class="col-12 col-sm-3 col-lg-2 d-none d-sm-block">
                 <div class="section-thumb mx-3">
-                    <?php dsi_get_img_from_id_url( $image_id, $image_url ); ?>
+                    <img src="<?php echo $image_url; ?>" alt="">
                 </div><!-- /section-thumb -->
             </div><!-- /col-lg-2 -->
             <div class="col-12 col-sm-9 col-lg-5 col-md-8">

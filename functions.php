@@ -217,17 +217,16 @@ function dsi_scripts() {
     //wp_deregister_script('jquery');
 
 	wp_enqueue_style( 'dsi-wp-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'dsi-font', get_template_directory_uri() . '/assets/css/fonts.css');
-	wp_enqueue_style( 'dsi-boostrap-italia', get_template_directory_uri() . '/assets/css/bootstrap-italia.css');
-	wp_enqueue_style( 'dsi-scuole', get_template_directory_uri() . '/assets/css/scuole.css');
-	wp_enqueue_style( 'dsi-overrides', get_template_directory_uri() . '/assets/css/overrides.css');
-	wp_enqueue_style( 'dsi-carousel-style', get_template_directory_uri() . '/assets/css/carousel-style-double.css');
-	wp_enqueue_style( 'dsi-splide-min', get_template_directory_uri() . '/assets/css/splide.min.css');
+	wp_enqueue_style( 'dsi-font', get_stylesheet_directory_uri() . '/assets/css/fonts.css');
+	wp_enqueue_style( 'dsi-boostrap-italia', get_stylesheet_directory_uri() . '/assets/css/bootstrap-italia.css');
+	wp_enqueue_style( 'dsi-scuole', get_stylesheet_directory_uri() . '/assets/css/scuole.css');
+	wp_enqueue_style( 'dsi-overrides', get_stylesheet_directory_uri() . '/assets/css/overrides.css');
+	wp_enqueue_style( 'dsi-carousel-style', get_stylesheet_directory_uri() . '/assets/css/carousel-style-double.css');
+	wp_enqueue_style( 'dsi-splide-min', get_stylesheet_directory_uri() . '/assets/css/splide.min.css');
 
 	wp_enqueue_script( 'dsi-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js');
-	
 	// print css
-    	wp_enqueue_style('dsi-print-style', get_template_directory_uri() . '/print.css', array(),'20190912','print' );
+    wp_enqueue_style('dsi-print-style',get_stylesheet_directory_uri() . '/print.css', array(),'20190912','print' );
 
 	// footer
 	wp_enqueue_script( 'dsi-boostrap-italia-js', get_template_directory_uri() . '/assets/js/bootstrap-italia.js', array(), false, true);
@@ -235,7 +234,8 @@ function dsi_scripts() {
 
 
     /*TODO: da definire se minifizzare*/
-	wp_enqueue_script( 'dsi-jquery-easing', get_template_directory_uri() . '/assets/js/components/jquery-easing/jquery.easing.js', array('jquery'), false, true);	wp_enqueue_script( 'dsi-jquery-scrollto', get_template_directory_uri() . '/assets/js/components/jquery.scrollto/jquery.scrollTo.js', array(), false, true);
+	wp_enqueue_script( 'dsi-jquery-easing', get_template_directory_uri() . '/assets/js/components/jquery-easing/jquery.easing.js', array(), false, true);
+	wp_enqueue_script( 'dsi-jquery-scrollto', get_template_directory_uri() . '/assets/js/components/jquery.scrollto/jquery.scrollTo.js', array(), false, true);
 	wp_enqueue_script( 'dsi-jquery-responsive-dom', get_template_directory_uri() . '/assets/js/components/ResponsiveDom/js/jquery.responsive-dom.js', array(), false, true);
 	wp_enqueue_script( 'dsi-jpushmenu', get_template_directory_uri() . '/assets/js/components/jPushMenu/jpushmenu.js', array(), false, true);
 	wp_enqueue_script( 'dsi-perfect-scrollbar', get_template_directory_uri() . '/assets/js/components/perfect-scrollbar-master/perfect-scrollbar/js/perfect-scrollbar.jquery.js', array(), false, true);
@@ -248,8 +248,23 @@ function dsi_scripts() {
 	if(is_singular(array("servizio", "struttura", "luogo", "evento", "scheda_progetto", "post", "circolare", "indirizzo")) || is_archive() || is_search() || is_post_type_archive("luogo")) {
 		wp_enqueue_script( 'dsi-leaflet-js', get_template_directory_uri() . '/assets/js/components/leaflet/leaflet.js', array(), false, true);
     }
+/*
+	if(is_singular()){
+        wp_enqueue_style( 'basictable-css', get_stylesheet_directory_uri() . '/assets/components/basictable/basictable.css');
+        wp_enqueue_script( 'basictable-js', get_template_directory_uri() . '/assets/components/basictable/jquery.basictable.js');
+
+    }*/
 
 	wp_enqueue_script( 'dsi-scuole-js', get_template_directory_uri() . '/assets/js/scuole.js', array(), false, true);
+
+
+	if(is_singular(array("evento","scheda_progetto")) || is_home() || is_archive() ){
+		wp_enqueue_script( 'dsi-clndr-json2', get_template_directory_uri() . '/assets/js/components/clndr/json2.js', array(), false, false);
+		wp_enqueue_script( 'dsi-clndr-moment', get_template_directory_uri() . '/assets/js/components/clndr/moment-2.8.3.js', array(), false, false);
+		wp_enqueue_script( 'dsi-clndr-underscore', get_template_directory_uri() . '/assets/js/components/clndr/underscore.js', array(), false, false);
+		wp_enqueue_script( 'dsi-clndr-clndr', get_template_directory_uri() . '/assets/js/components/clndr/clndr.js', array(), false, false);
+		wp_enqueue_script( 'dsi-clndr-it', get_template_directory_uri() . '/assets/js/components/clndr/it.js', array(), false, false);
+	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

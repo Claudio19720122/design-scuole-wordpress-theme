@@ -64,12 +64,9 @@ get_header();
                         <div class="col-12 col-sm-3 col-lg-2 d-none d-sm-block">
                             <div class="section-thumb mx-3">
                                 <?php
-                                    $image_id= get_post_thumbnail_id($post);
-                                    if(has_post_thumbnail($post))
-                                        $image_url = get_the_post_thumbnail_url($post, "item-thumb");
-                                    else
-                                        $image_url = get_template_directory_uri() ."/assets/placeholders/logo-service.png";
-                                    dsi_get_img_from_id_url( $image_id, $image_url );
+                                if(has_post_thumbnail($post)){
+                                    echo "<img src='".get_the_post_thumbnail_url($post, "item-thumb")."'>";
+                                }
                                 ?>
                             </div><!-- /section-thumb -->
                         </div><!-- /col-lg-2 -->
@@ -165,7 +162,7 @@ get_header();
                             </aside>
 
                         </div>
-                        <div class="col-lg-8 col-md-8 offset-lg-1 pt84">
+                        <div class="main-content col-lg-8 col-md-8 offset-lg-1 pt84">
                             <article class="article-wrapper">
                                 <h2 class="h4" id="art-par-descrizione"><?php _e("Cos'è", "design_scuole_italia"); ?></h2>
                                 <div class="row variable-gutters">
@@ -251,7 +248,7 @@ get_header();
 										?>
 											<div class="col-4 col-md-3">
 												<div class="note">
-													<svg class="svg-filters" width="90" height="64" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" href="#svg-spid"></use></svg>
+													<svg class="svg-filters" width="68" height="34" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" href="#svg-spid"></use></svg>
 													<p><?php _e("Non hai SPID?", "design_scuole_italia"); ?><br/><a href="https://www.spid.gov.it" aria-label="scopri di più su SPID - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
 												</div>
 											</div>
@@ -269,8 +266,8 @@ get_header();
 										?>
 											<div class="col-4 col-md-3">
 												<div class="note cns">
-													<img class="svg-filters" width="90" height="64" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo-cns.png' ); ?>">
-													<p><?php _e("Non hai CNS?", "design_scuole_italia"); ?><br/><a href="https://sistemats1.sanita.finanze.it/portale/modalita-di-accesso-con-ts_cns" aria-label="scopri di più su CNS - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
+													<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo-cns.png' ); ?>" alt="logo cns">
+													<p><?php _e("Non hai CNS?", "design_scuole_italia"); ?><br/><a href="#" aria-label="scopri di più su CNS - link esterno - (apre pagina su nuova scheda)" data-focus-mouse="false">Scopri di più</a>.</p>
 												</div>
 											</div>
 										<?php }									
@@ -360,6 +357,11 @@ get_header();
 
                                                     ?>
                                                     <div class="calendar-date">
+                                                        <div class="calendar-date-day">
+                                                            <small><?php echo $arrdata[2]; ?></small>
+                                                            <p><?php echo $arrdata[0]; ?></p>
+                                                            <small><b><?php echo $monthName; ?></b></small>
+                                                        </div><!-- /calendar-date-day -->
                                                         <div class="calendar-date-description rounded">
                                                             <div class="calendar-date-description-content">
                                                                 <?php if(isset($fase["titolo_fase"]) && ($fase["titolo_fase"] != "")) { ?>
@@ -369,10 +371,6 @@ get_header();
                                                                 echo wpautop($fase["desc_fase"]); ?>
                                                             </div><!-- /calendar-date-description-content -->
                                                         </div><!-- /calendar-date-description -->
-                                                        <h4 class="calendar-date-day">
-                                                            <p><?php echo $arrdata[0]; ?></p>
-                                                            <small><b><?php echo $monthName; ?></b></small>
-                                                        </h4><!-- /calendar-date-day -->
                                                     </div><!-- /calendar-date -->
                                                     <?php
                                                 }
@@ -497,7 +495,7 @@ get_header();
                                 }
 
                                 if($link_schede_progetti){ ?>
-                                    <h2 class="h6"><?php _e("Progetti collegati al servizio", "design_scuole_italia"); ?></h2>
+                                    <h3 class="h6"><?php _e("Progetti collegati al servizio", "design_scuole_italia"); ?></h3>
                                     <div class="card-deck card-deck-spaced mb-4">
                                         <?php
                                         foreach ($link_schede_progetti as $idprogetto){

@@ -73,12 +73,9 @@ get_header();
                         <div class="col-12 col-sm-3 col-lg-2 d-none d-sm-block">
                             <div class="section-thumb mx-3">
                                 <?php
-                                    $image_id= get_post_thumbnail_id($post);
-                                    if(has_post_thumbnail($post))
-                                        $image_url = get_the_post_thumbnail_url($post, "item-thumb");
-                                    else
-                                        $image_url = get_template_directory_uri() ."/assets/placeholders/logo-service.png";
-                                    dsi_get_img_from_id_url( $image_id, $image_url );
+                                if(has_post_thumbnail($post)){
+                                    echo "<img src='".get_the_post_thumbnail_url($post, "item-thumb")."'>";
+                                }
                                 ?>
                             </div><!-- /section-thumb -->
                         </div><!-- /col-lg-2 -->
@@ -208,7 +205,7 @@ get_header();
                             </aside>
 
                         </div>
-                        <div class="col-lg-8 col-md-8 offset-lg-1 pt84">
+                        <div class="main-content col-lg-8 col-md-8 offset-lg-1 pt84">
                             <article class="article-wrapper">
                                 <h4 id="art-par-descrizione"><?php _e("Cos'è", "design_scuole_italia"); ?></h4>
                                 <div class="row variable-gutters">
@@ -288,7 +285,7 @@ get_header();
 										?>
 											<div class="col-4 col-md-3">
 												<div class="note">
-													<svg class="svg-filters" width="90" height="64" aria-label="spid" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" href="#svg-spid"></use></svg>
+													<svg class="svg-filters" width="68" height="34" aria-label="spid" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" href="#svg-spid"></use></svg>
 													<p><?php _e("Non hai SPID?", "design_scuole_italia"); ?><br/><a href="https://www.spid.gov.it" aria-label="scopri di più su SPID (apre pagina su nuova scheda)">Scopri di più</a>.</p>
 												</div>
 											</div>
@@ -306,8 +303,8 @@ get_header();
 											?>
 											<div class="col-4 col-md-3">
 												<div class="note cns">
-													<img class="svg-filters" width="90" height="64" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo-cns.png' ); ?>">
-													<p><?php _e("Non hai CNS?", "design_scuole_italia"); ?><br/><a href="https://sistemats1.sanita.finanze.it/portale/modalita-di-accesso-con-ts_cns" aria-label="scopri di più su CNS (apre pagina su nuova scheda)">Scopri di più</a>.</p>
+													<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo-cns.png' ); ?>" alt="">
+													<p><?php _e("Non hai CNS?", "design_scuole_italia"); ?><br/><a href="#" aria-label="scopri di più su CNS (apre pagina su nuova scheda)">Scopri di più</a>.</p>
 												</div>
 											</div>
 										<?php }	

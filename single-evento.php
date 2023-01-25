@@ -125,7 +125,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                             </aside>
 
                         </div>
-                        <div class="col-lg-6">
+                        <div class="main-content col-lg-6">
                             <article class="article-wrapper pt-4 px-3">
                                 <h2 id="art-par-cosa" class="h4"><?php _e("Cos'è", "design_scuole_italia"); ?></h2>
                                 <div class="col-lg-12 px-0 wysiwig-text">
@@ -219,18 +219,19 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
 
                                             ?>
                                             <div class="calendar-date">
+                                                <div class="calendar-date-day">
+                                                    <?php if ($old_data != date_i18n("dMY", $data["data"])) { ?>
+                                                        <small><?php echo date_i18n("Y", $data["data"]); ?></small>
+                                                        <p><?php echo date_i18n("d", $data["data"]); ?></p>
+                                                        <small><b><?php echo date_i18n("M", $data["data"]); ?></b></small>
+
+                                                    <?php } ?>
+                                                </div><!-- /calendar-date-day -->
                                                 <div class="calendar-date-description rounded">
                                                     <div class="calendar-date-description-content">
                                                         <p><?php echo date_i18n("H:i", $data["data"]); ?><?php if (isset($data["descrizione"])) echo " - " . $data["descrizione"]; ?></p>
                                                     </div><!-- /calendar-date-description-content -->
                                                 </div><!-- /calendar-date-description -->
-                                                <h4 class="calendar-date-day">
-                                                    <?php if ($old_data != date_i18n("dMY", $data["data"])) { ?>
-                                                        <p><?php echo date_i18n("d", $data["data"]); ?></p>
-                                                        <small><b><?php echo date_i18n("M", $data["data"]); ?></b></small>
-
-                                                    <?php } ?>
-                                                </h4><!-- /calendar-date-day -->
                                             </div><!-- /calendar-date -->
                                             <?php
                                             $old_data = date_i18n("dMY", $data["data"]);
@@ -418,26 +419,26 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                 </div><!-- /container -->
             </section>
 
-            <?php if ( is_array( $gallery ) && count( $gallery ) > 0 ) { ?>
-                <section class="section bg-gray-light py-5" id="art-par-04">
-                    <div class="container py-4">
-                        <div class="title-section text-center mb-5">
-                            <h2 class="h4">Foto e video</h2>
-                        </div><!-- /title-large -->
-                        <div class="row variable-gutters">
-                            <div class="col">
-                                <div class="it-carousel-wrapper simple-two-carousel splide" data-bs-carousel-splide>
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                        <?php get_template_part( "template-parts/single/gallery", $post->post_type ); ?>
-                                        </ul>
-                                    </div><!-- /carousel-simple -->
-                                </div>
-                            </div><!-- /col -->
-                        </div><!-- /row -->
-                    </div><!-- /container -->
-                </section>
-            <?php } ?>
+            <section class="section bg-gray-light py-5" id="art-par-04">
+                <div class="container py-4">
+                    <div class="title-section text-center mb-5">
+                        <h2 class="h4">Foto e video</h2>
+                    </div><!-- /title-large -->
+                    <div class="row variable-gutters">
+                        <div class="col">
+                        <?php if ( is_array( $gallery ) && count( $gallery ) > 0 ) { ?>
+                            <div class="it-carousel-wrapper simple-two-carousel splide" data-bs-carousel-splide>
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                    <?php get_template_part( "template-parts/single/gallery", $post->post_type ); ?>
+                                    </ul>
+                                </div><!-- /carousel-simple -->
+                            </div>
+                        <?php } ?>
+                        </div><!-- /col -->
+                    </div><!-- /row -->
+                </div><!-- /container -->
+            </section>
 
 			<?php get_template_part("template-parts/single/more-posts"); ?>
 

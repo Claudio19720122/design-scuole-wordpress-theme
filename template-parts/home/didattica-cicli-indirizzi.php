@@ -21,14 +21,14 @@ if(is_array($indirizzi_didattica) && count($indirizzi_didattica)>0) {
 
                     </div><!-- /title-section -->
                     <div class="tabs-img">
-                        <img class="img-fluid" src="<?php echo  get_stylesheet_directory_uri(); ?>/assets/img/didattica-mockup.png">
+                        <img class="img-fluid" src="<?php echo  get_stylesheet_directory_uri(); ?>/assets/img/didattica-mockup.png" title="<?php _e("Gli indirizzi", "design_scuole_italia"); ?>" alt="<?php _e("La didattica", "design_scuole_italia"); ?>">
                     </div>
                     <div class="responsive-tabs responsive-tabs-aside padding-bottom-200">
                         <ul>
                             <?php
                             foreach ($indirizzi_didattica as $slugindirizzo){
                                 $indirizzo = get_term_by("slug", $slugindirizzo,"percorsi-di-studio");
-                                if($indirizzo && 'trash' !== get_post_status($idindirizzo)) {
+                                if($indirizzo) {
                                     ?>
                                     <li>
                                         <a href="#tab-<?php echo $slugindirizzo; ?>"><?php echo $indirizzo->name; ?></a>

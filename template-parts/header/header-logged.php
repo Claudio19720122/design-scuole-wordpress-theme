@@ -17,20 +17,16 @@ if($last_notification){
 <?php
 }
 
-$foto_url = get_the_author_meta('_dsi_persona_foto', $current_user->ID);
-if($foto_url)
-    $image_id = attachment_url_to_postid($foto_url);
-$image_url = dsi_get_user_avatar($current_user);
 ?>
 
     <a class="toggle-user-menu-mobile toggle-menu menu-right push-body d-xl-none" href="#">
         <div class="avatar-wrapper">
-            <?php dsi_get_img_from_id_url( $image_id, $image_url ); ?>
+            <img src="<?php echo dsi_get_user_avatar($current_user); ?>" alt="">
         </div><!-- /avatar-wrapper -->
     </a>
     <a class="dropdown-toggle d-none d-xl-flex" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="dropdown toggle">
         <div class="avatar-wrapper">
-            <?php dsi_get_img_from_id_url( $image_id, $image_url ); ?>
+            <img src="<?php echo dsi_get_user_avatar($current_user); ?>" alt="">
         </div><!-- /avatar-wrapper -->
         <p><strong><?php echo dsi_get_display_name($current_user->ID); ?></strong></p>
     </a>
@@ -38,7 +34,7 @@ $image_url = dsi_get_user_avatar($current_user);
         <div class="menu-user-wrapper">
             <div class="user-details">
                 <div class="avatar-wrapper">
-                    <?php dsi_get_img_from_id_url( $image_id, $image_url ); ?>
+                    <img src="<?php echo dsi_get_user_avatar($current_user); ?>" alt="">
                 </div><!-- /avatar-wrapper -->
                 <button type="button" aria-label="chiudi menu utente" class="close-user-menu" tabindex="-1">
                     <svg class="svg-cancel-large">
